@@ -178,6 +178,7 @@ onUnmounted(() => {
 
 <style scoped>
 .timer-view {
+  padding: 2rem .75rem;
   max-width: 800px;
   margin: 0 auto;
 }

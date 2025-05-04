@@ -48,6 +48,19 @@ export const useTimeEntriesStore = defineStore('timeEntries', () => {
     }
   }
 
+  function sanitizeTimeEntry(entry) {
+    // Создаем новый объект с только нужными свойствами
+    return {
+      id: entry.id,
+      projectId: entry.projectId,
+      description: entry.description,
+      startTime: entry.startTime,
+      endTime: entry.endTime,
+      duration: entry.duration,
+      synced: entry.synced,
+    };
+  }
+
   // Запуск таймера для новой записи
   function startTimer(projectId: number, description: string = '') {
     if (currentEntry.value) {
@@ -65,7 +78,8 @@ export const useTimeEntriesStore = defineStore('timeEntries', () => {
     };
 
     // Сохраняем в IndexedDB
-    dbService.addTimeEntry(currentEntry.value);
+    // dbService.addTimeEntry(JSON.parse(JSON.stringify(currentEntry.value)));
+    dbService.addTimeEntry(sanitizeTimeEntry(currentEntry.value));
   }
 
   // Остановка таймера и сохранение записи
@@ -77,7 +91,9 @@ export const useTimeEntriesStore = defineStore('timeEntries', () => {
       (currentEntry.value.endTime - currentEntry.value.startTime) / 1000;
 
     // Сохраняем в IndexedDB
-    await dbService.updateTimeEntry(currentEntry.value);
+    await dbService.updateTimeEntry(
+      sanitizeTimeEntry(currentEntry.value)
+    );
 
     // Добавляем в локальное состояние
     timeEntries.value.push({ ...currentEntry.value });
