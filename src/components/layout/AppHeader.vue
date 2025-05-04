@@ -6,9 +6,9 @@
     <nav>
       <router-link to="/">Главная</router-link>
       <router-link to="/timer">Таймер</router-link>
-      <router-link to="/reports">Отчеты</router-link>
+      <!-- <router-link to="/reports">Отчеты</router-link> -->
       <router-link to="/projects">Проекты</router-link>
-      <router-link to="/settings">Настройки</router-link>
+      <!-- <router-link to="/settings">Настройки</router-link> -->
     </nav>
     <div class="sync-status">
       <span v-if="isOnline" class="online">Онлайн</span>

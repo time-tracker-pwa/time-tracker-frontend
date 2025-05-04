@@ -13,4 +13,5 @@ export interface Project {
   name: string
   color: string
   synced?: boolean
+  description: string
 }

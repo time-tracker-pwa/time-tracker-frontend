@@ -542,16 +542,14 @@ async function saveProject() {
       }
     } else {
       // Создание нового проекта
-      const newProject = await projectsStore.addProject({
-        name: projectForm.value.name,
-        description: projectForm.value.description,
-        color: projectForm.value.color,
-      });
+      await projectsStore.addProject(
+        projectForm.value.name,
+        projectForm.value.color,
+        projectForm.value.description
+      );
 
-      // Выбираем новый проект
-      if (newProject) {
-        selectedProject.value = newProject;
-      }
+      // Выбираем новый проект, предполагая, что новый проект добавлен в конец массива
+      selectedProject.value = projects.value[projects.value.length - 1];
     }
 
     closeProjectModal();
