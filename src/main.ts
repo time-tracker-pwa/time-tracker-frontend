@@ -6,7 +6,7 @@ import './main.css';
 import { registerSW } from 'virtual:pwa-register';
 
 // Функция для обновления PWA при появлении новой версии
-const updateSW = registerSW({
+const { updateSW } = registerSW({
   onNeedRefresh() {
     // Показать уведомление о необходимости обновления
     if (confirm('Доступна новая версия приложения. Обновить?')) {

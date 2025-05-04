@@ -6,6 +6,7 @@ import { api } from '@/services/api';
 export const useProjectsStore = defineStore('projects', () => {
   const projects = ref<Project[]>([]);
   const isLoading = ref(false);
+  const error = ref<string | null>(null);
 
   async function fetchProjects() {
     isLoading.value = true;
@@ -91,6 +92,7 @@ export const useProjectsStore = defineStore('projects', () => {
     fetchProjects,
     addProject,
     deleteProject,
-    updateProject
+    updateProject,
+    error
   };
 });
