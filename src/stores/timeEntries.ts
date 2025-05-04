@@ -92,7 +92,7 @@ export const useTimeEntriesStore = defineStore('timeEntries', () => {
 
     // Сохраняем в IndexedDB
     await dbService.updateTimeEntry(
-      JSON.parse(JSON.stringify(currentEntry.value))
+      sanitizeTimeEntry(currentEntry.value)
     );
 
     // Добавляем в локальное состояние
