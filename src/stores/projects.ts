@@ -69,11 +69,28 @@ export const useProjectsStore = defineStore('projects', () => {
     }
   }
 
+  async function updateProject(updatedProject: Partial<Project> & { id: number }) {
+    const index = projects.value.findIndex((p) => p.id === updatedProject.id);
+    if (index === -1) return;
+
+    // Update the local project data and mark as not synced
+    projects.value[index] = { ...projects.value[index], ...updatedProject, synced: false };
+    localStorage.setItem('projects', JSON.stringify(projects.value));
+
+    try {
+      await api.put(`/projects/${updatedProject.id}`, updatedProject);
+      projects.value[index].synced = true;
+    } catch (err) {
+      console.error('Failed to update project on server:', err);
+    }
+  }
+
   return {
     projects,
     isLoading,
     fetchProjects,
     addProject,
     deleteProject,
+    updateProject
   };
 });
