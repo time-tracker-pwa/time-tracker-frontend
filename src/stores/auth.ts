@@ -58,7 +58,7 @@ export const useAuthStore = defineStore('auth', () => {
       token.value = response.data.token;
 
       // Сохраняем токен в localStorage
-      localStorage.setItem('auth_token', token.value);
+      localStorage.setItem('auth_token', token.value || '');
 
       // Загружаем профиль пользователя
       await fetchUserProfile();
