@@ -1,8 +1,8 @@
 <template>
   <header class="app-header">
-    <div class="logo">
+    <!-- <div class="logo">
       <h1>TimeTracker</h1>
-    </div>
+    </div> -->
     <nav>
       <router-link to="/">Главная</router-link>
       <router-link to="/timer">Таймер</router-link>
@@ -18,29 +18,30 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue';
 
-const isOnline = ref(navigator.onLine)
+const isOnline = ref(navigator.onLine);
 
 function updateOnlineStatus() {
-  isOnline.value = navigator.onLine
+  isOnline.value = navigator.onLine;
 }
 
 onMounted(() => {
-  window.addEventListener('online', updateOnlineStatus)
-  window.addEventListener('offline', updateOnlineStatus)
-})
+  window.addEventListener('online', updateOnlineStatus);
+  window.addEventListener('offline', updateOnlineStatus);
+});
 
 onUnmounted(() => {
-  window.removeEventListener('online', updateOnlineStatus)
-  window.removeEventListener('offline', updateOnlineStatus)
-})
+  window.removeEventListener('online', updateOnlineStatus);
+  window.removeEventListener('offline', updateOnlineStatus);
+});
 </script>
 
 <style scoped>
 .app-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 2rem;
   align-items: center;
   padding: 1rem;
   background-color: #2c3e50;

@@ -431,6 +431,9 @@ onMounted(async () => {
 .hero-buttons {
   display: flex;
   gap: 1rem;
+  @media(max-width: 450px) {
+    flex-direction: column;
+  }
 }
 
 .hero-image {
